@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, flash
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from cryptography.fernet import Fernet
 
 app = Flask(__name__)
+app.secret_key = b'SECRETjojn2r982h2j@J$O#@$J@jo@#'
 
 client = MongoClient('localhost', 27017) #, username='jdwilcox32', password='jfolA6tcIb9k9HXy'
 
@@ -20,18 +21,28 @@ def index():
         login_password = request.form['login_password']
         key=user_key
         k=Fernet(key)
-        logins.insert_one({'login_website': k.encrypt(bytes(login_website,'utf-8')), 'login_username': k.encrypt(bytes(login_username,'utf-8')), 'login_password': k.encrypt(bytes(login_password,'utf-8'))})
+        logins.insert_one({'login_website': login_website, 'login_username': k.encrypt(bytes(login_username,'utf-8')), 'login_password': k.encrypt(bytes(login_password,'utf-8'))})
         return redirect(url_for('index'))
 
     all_logins = logins.find()
     return render_template('index.html', logins=all_logins)
+
 
 @app.post('/<id>/delete/')
 def delete(id):
     logins.delete_one({"_id": ObjectId(id)})
     return redirect(url_for('index'))
 
-# @app.post('/<key>/decrypt')
-# def decrypt(key):
-#     logins.
-#     return redirect(url_for('index'))
+@app.post('/<id>/decrypt')
+def decrypt(id):
+    return redirect(url_for('decryption',decrypt_id=id))
+
+@app.route('/decryption/<decrypt_id>',methods=('GET','POST'))
+def decryption(decrypt_id):
+    if request.method=='POST':
+        user_key = request.form['user_key']
+        k=Fernet(user_key)
+        decrypt_login = logins.find_one({"_id": ObjectId(decrypt_id)})
+        flash("Username: "+k.decrypt(decrypt_login["login_username"]).decode("utf-8")+"  ")
+        flash("Password: "+k.decrypt(decrypt_login["login_password"]).decode("utf-8")+"  ")
+    return render_template('decryption.html',id=decrypt_id)
