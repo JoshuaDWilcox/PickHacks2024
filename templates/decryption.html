@@ -15,6 +15,7 @@
     <h1>Decryption? I hardly know ion!</h1>
     <hr>
     <div class="content">
+    <a href="{{ url_for('index') }}">Home Page</a>
     <form method="post">
         <p>
             <b><label for="user_key">Key</label></b>
@@ -26,17 +27,16 @@
         <button type="submit">Submit</button>
     </form>
     <hr>
-    {% for login in logins %}
-        <div class="login">
-            <p><b>{{ login['login_website'] }}</b> {{ login['login_username'] }} <i>({{ login['login_password']}})</i></p>
-            <form method="POST" action="{{ url_for('delete', id=login['_id']) }}">
-                <input type="submit" value="Delete Login " onclick="return confirm('Are you sure you want to delete this entry?')">
-            </form>
-            <form method="POST" action="{{ url_for('decrypt', key=user_key, id=login['_id']) }}">
-                <input type="submit" value="Decrypt Login " onclick="return confirm('Have you filled out your key?')">
-            </form>
-        </div>
-    {% endfor %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
     </div>
 </body>
 </html>

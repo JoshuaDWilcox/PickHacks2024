@@ -14,14 +14,17 @@ logins = db.logins
 @app.route('/', methods=('GET', 'POST'))
 def index():
     if request.method=='POST':
-        #key=Fernet.generate_key() -- GIVE USER A KEY ON ACCOUNT CREATION
-        user_key = request.form['user_key']
-        login_website = request.form['login_website']
-        login_username = request.form['login_username']
-        login_password = request.form['login_password']
-        key=user_key
-        k=Fernet(key)
-        logins.insert_one({'login_website': login_website, 'login_username': k.encrypt(bytes(login_username,'utf-8')), 'login_password': k.encrypt(bytes(login_password,'utf-8'))})
+        try:
+            #key=Fernet.generate_key() -- GIVE USER A KEY ON ACCOUNT CREATION
+            user_key = request.form['user_key']
+            login_website = request.form['login_website']
+            login_username = request.form['login_username']
+            login_password = request.form['login_password']
+            key=user_key
+            k=Fernet(key)
+            logins.insert_one({'login_website': login_website, 'login_username': k.encrypt(bytes(login_username,'utf-8')), 'login_password': k.encrypt(bytes(login_password,'utf-8'))})
+        except:
+            flash("Error! Please try again")
         return redirect(url_for('index'))
 
     all_logins = logins.find()
@@ -39,10 +42,22 @@ def decrypt(id):
 
 @app.route('/decryption/<decrypt_id>',methods=('GET','POST'))
 def decryption(decrypt_id):
+    decrypt_login = logins.find_one({"_id": ObjectId(decrypt_id)})
+    flash("Website: "+decrypt_login["login_website"])
     if request.method=='POST':
-        user_key = request.form['user_key']
-        k=Fernet(user_key)
-        decrypt_login = logins.find_one({"_id": ObjectId(decrypt_id)})
-        flash("Username: "+k.decrypt(decrypt_login["login_username"]).decode("utf-8")+"  ")
-        flash("Password: "+k.decrypt(decrypt_login["login_password"]).decode("utf-8")+"  ")
+        try:
+            user_key = request.form['user_key']
+            k=Fernet(user_key)
+            flash("Username: "+k.decrypt(decrypt_login["login_username"]).decode("utf-8")+"  ")
+            flash("Password: "+k.decrypt(decrypt_login["login_password"]).decode("utf-8")+"  ")
+            return render_template('decryption.html',id=decrypt_id)
+        except:
+            flash("Username: ******")
+            flash("Password: ******")
+            flash("Improper key. Please try again.")
+            return render_template('decryption.html',id=decrypt_id)
+
+    flash("Username: ******")
+    flash("Password: ******")
     return render_template('decryption.html',id=decrypt_id)
+
