@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FlaskApp</title>
+    <style>
+        .todo {
+            padding: 20px;
+            margin: 10px;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1>FlaskTODO</h1>
+    <hr>
+    <div class="content">
+    <form method="post">
+        <p>
+            <b><label for="user_key">Key</label></b>
+        </p>
+        <p>
+            <input type="text" name="user_key"
+                placeholder="Encryption / Decryption Key"></input>
+        </p>
+        <p>
+            <b><label for="login_website">Website</label></b>
+        </p>
+        <p>
+            <input type="text" name="login_website"
+                placeholder="Login Website"></input>
+        </p>
+
+        
+        <p>
+            <b><label for="login_username">Username</label></b>
+        </p>
+        <p>
+            <input type="text" name="login_username"
+                placeholder="Login Username"></input>
+        </p>
+
+        <p>
+            <b><label for="login_password">Password</label></b>
+        </p>
+        <p>
+            <input type="text" name="login_password"
+                placeholder="Login Password"></input>
+        </p>
+        <!-- <p>
+            <input id="degree-0" name="degree" required type="radio" value="Important">
+            <label for="degree-0">Important</label>
+        </p>
+        <p>
+            <input id="degree-1" name="degree" required type="radio" value="Unimportant">
+            <label for="degree-1">Unimportant</label>
+        </p> -->
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    {% for login in logins %}
+        <div class="login">
+            <p><b>{{ login['login_website'] }}</b> {{ login['login_username'] }} <i>({{ login['login_password']}})</i></p>
+            <form method="POST" action="{{ url_for('delete', id=login['_id']) }}">
+                <input type="submit" value="Delete Login " onclick="return confirm('Are you sure you want to delete this entry?')">
+            </form>
+        </div>
+    {% endfor %}
+    </div>
+</body>
+</html>
