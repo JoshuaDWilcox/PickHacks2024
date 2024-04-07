@@ -11,7 +11,7 @@ client = MongoClient('localhost', 27017) #, username='jdwilcox32', password='jfo
 db = client.flask_db
 logins = db.logins
 
-@app.route('/home', methods=('GET', 'POST'))
+@app.route('/', methods=('GET', 'POST'))
 def index():
     if request.method=='POST':
         try:
