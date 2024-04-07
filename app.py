@@ -28,8 +28,10 @@ def index():
             key=user_key
             k=Fernet(key)
             logins.insert_one({'login_website': login_website, 'login_username': k.encrypt(bytes(login_username,'utf-8')), 'login_password': k.encrypt(bytes(login_password,'utf-8'))})
+            print("LOGIN INSERTED")
         except:
             flash("Error! Please try again")
+            print("LOGIN EXCEPTION")
         return redirect(url_for('index'))
 
     all_logins = logins.find()
