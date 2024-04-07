@@ -61,3 +61,7 @@ def decryption(decrypt_id):
     flash("Password: ******")
     return render_template('decryption.html',id=decrypt_id)
 
+
+@app.route('/about',methods=('GET','POST'))
+def about():
+    return render_template('about.html')
