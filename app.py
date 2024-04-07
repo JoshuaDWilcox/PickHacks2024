@@ -73,6 +73,8 @@ def key_gen():
         flash(key) 
     return render_template('key_gen.html')
 
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
 # @app.post(('/key_gen'))
 # def generate_key():
 #     key=Fernet.generate_key()
