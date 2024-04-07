@@ -88,7 +88,7 @@
         <a href="{{ url_for('index') }}">Home</a>
       </div>
     <div class="content">
-    <form class="user_input" method="post">
+    <form class="user_input" method="POST" action="{{ url_for('index') }}">
         <p>
             <b><label for="user_key">Key</label></b>
         </p>
@@ -120,7 +120,8 @@
             <input type="text" name="login_password"
                 placeholder="Login Password"></input>
         </p>
-        <button type="submit">Submit</button>
+        <input type="submit" value="Submit">
+        <!-- <button type="submit">Submit</button> -->
     </form>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
