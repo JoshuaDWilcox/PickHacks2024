@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>FlaskApp</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit|Karla|Signika">
     <style>
         #leftlogo{
             font-family: "Kanit", sans-serif;
@@ -28,9 +28,19 @@
             margin: 10px;
 
         }
+        h1.warning{
+            text-align: center;
+            font-family: "Signika", sans-serif;
+        }
         .header {
             background-color: #333;
             overflow: hidden;
+        
+        }
+        #keytext{
+            font-family: "Karla", sans-serif;
+            text-align: center;
+            font-size: 35px;
         }
         .header a {
             font-family: "Kanit", sans-serif;
@@ -41,17 +51,21 @@
             text-align: center;
             font-size: 24px;
         }
+        div.buttonbutton{
+            text-align:center;
+        }
         input{
   border:none;
   outline:none;
   display:inline-block;
-  height:34px;
-  vertical-align:middle;
+  height:68px;
+  font-family: "Signika", sans-serif;
   position:relative;
   bottom:14px;
   right:9px;
   border-radius:22px;
-  width:220px;
+  width:440px;
+  font-size: 35px;
   box-sizing:border-box;
   padding:0 18px; 
 
@@ -67,19 +81,19 @@
         <a href="{{ url_for('about') }}">About</a>
         <a href="{{ url_for('index') }}">Home</a>
       </div>
-    <h1>Generate your unique key here! Don't lose it!</h1>
-    <hr>
+    <h1 class="warning">Generate your unique key here! Don't lose it!</h1>
     <div class="content">
         <br>
+    <div class="buttonbutton">
     <form method="POST" action="{{ url_for('key_gen') }}">
         <input type="submit" value="Generate key!">
     </form>
-    <hr>
+    </div>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul class="flashes">
             {% for message in messages %}
-                <p>Key: {{ message }}</p>
+                <p id="keytext">Key: {{ message }}</p>
             {% endfor %}
             </ul>
         {% endif %}

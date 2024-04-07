@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>FlaskApp</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit|Karla">
             <style>
                 #leftlogo{
                     font-family: "Kanit", sans-serif;
@@ -84,7 +84,7 @@
         {% if messages %}
             <ul class="flashes">
             {% for message in messages %}
-                <li>{{ message }}</li>
+                <p>{{ message }}</p>
             {% endfor %}
             </ul>
         {% endif %}
