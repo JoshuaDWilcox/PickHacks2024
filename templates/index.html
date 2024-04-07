@@ -3,15 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>FlaskApp</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
     <style>
+        a:link { 
+            text-decoration: none; 
+        } 
+        body {
+            background-image: url('static/pexels-neosiam-+-580871.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+
+        }
         .todo {
             padding: 20px;
             margin: 10px;
-            background-color: #eee;
+
         }
+        .header {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .header a {
+            padding: 14px 16px;
+            display: block;
+            float: right;
+            color: #f2f2f2;
+            text-align: center;
+            font-size: 24px;
+        }
+        input{
+  border:none;
+  outline:none;
+  display:inline-block;
+  height:34px;
+  vertical-align:middle;
+  position:relative;
+  bottom:14px;
+  right:9px;
+  border-radius:22px;
+  width:220px;
+  box-sizing:border-box;
+  padding:0 18px; 
+
+}
+
+input[type="button"]{ 
+  color:#fff;
+  position:relative;
+  left:9px;
+  top:25px; 
+  width:100px;
+  cursor:pointer;
+}
     </style>
 </head>
 <body>
+    <div class="header">
+        <!--<img src="{{url_for('static', filename='goldfish.jpeg')}}" /> -->
+        <a class="active" href="#home"><img src="" /></a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+      </div>
     <h1>Password Manager? I barely know her!</h1>
     <hr>
     <div class="content">
@@ -67,6 +120,7 @@
             <form method="POST" action="{{ url_for('delete', id=login['_id']) }}">
                 <input type="submit" value="Delete Login " onclick="return confirm('Are you sure you want to delete this entry?')">
             </form>
+            <br>
             <form method="POST" action="{{ url_for('decrypt', id=login['_id']) }}">
                 <input type="submit" value="Decrypt Login " onclick="return confirm('Are you sure you want to decrypt this login?')">
             </form>
