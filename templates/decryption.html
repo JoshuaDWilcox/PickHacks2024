@@ -1,21 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>FlaskApp</title>
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <title>FlaskApp</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
+            <style>
+        a:link { 
+            text-decoration: none; 
+        } 
+        body {
+            background-image: url('static/pexels-em-hopper-10923765.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+
+        }
         .todo {
             padding: 20px;
             margin: 10px;
-            background-color: #eee;
+
         }
+        .header {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .header a {
+            font-family: "Kanit", sans-serif;
+            padding: 14px 16px;
+            display: block;
+            float: right;
+            color: #f2f2f2;
+            text-align: center;
+            font-size: 24px;
+        }
+        input{
+  border:none;
+  outline:none;
+  display:inline-block;
+  height:34px;
+  vertical-align:middle;
+  position:relative;
+  bottom:14px;
+  right:9px;
+  border-radius:22px;
+  width:220px;
+  box-sizing:border-box;
+  padding:0 18px; 
+
+}
+
     </style>
-</head>
+    </head>
 <body>
-    <h1>Decryption? I hardly know ion!</h1>
-    <hr>
+    <div class="header">
+        <!--<img src="{{url_for('static', filename='goldfish.jpeg')}}" /> -->
+        <a class="active" href="#home"><img src="" /></a>
+        <a href="{{ url_for('key_gen') }}">Key</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('index') }}">Home</a>
+      </div>
     <div class="content">
-    <a href="{{ url_for('index') }}">Home Page</a>
     <form method="post">
         <p>
             <b><label for="user_key">Key</label></b>

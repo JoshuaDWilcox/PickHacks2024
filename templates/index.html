@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
     <meta charset="UTF-8">
     <title>FlaskApp</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
     <style>
+        
         a:link { 
             text-decoration: none; 
         } 
         body {
-            background-image: url('static/pexels-neosiam-+-580871.jpg');
+            background-image: url('static/pexels-em-hopper-10923765.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -25,6 +26,7 @@
             overflow: hidden;
         }
         .header a {
+            font-family: "Kanit", sans-serif;
             padding: 14px 16px;
             display: block;
             float: right;
@@ -47,35 +49,27 @@
             padding: 4px;
             background-color: grey;
             width: 500px;
-            height: 110px;
+            height: 190px;
             overflow-x: hidden;
             overflow-y: auto;
             text-align: justify;
         }
         input{
-  border:none;
-  outline:none;
-  display:inline-block;
-  height:34px;
-  vertical-align:middle;
-  position:relative;
-  bottom:14px;
-  right:9px;
-  border-radius:22px;
-  width:220px;
-  box-sizing:border-box;
-  padding:0 18px; 
+            border:none;
+            outline:none;
+            display:inline-block;
+            height:34px;
+            vertical-align:middle;
+            position:relative;
+            bottom:14px;
+            right:9px;
+            border-radius:22px;
+            width:220px;
+            box-sizing:border-box;
+            padding: 0 18px; 
 
 }
 
-input[type="button"]{ 
-  color:#fff;
-  position:relative;
-  left:9px;
-  top:25px; 
-  width:100px;
-  cursor:pointer;
-}
     </style>
 </head>
 <body>
@@ -86,8 +80,6 @@ input[type="button"]{
         <a href="{{ url_for('about') }}">About</a>
         <a href="{{ url_for('index') }}">Home</a>
       </div>
-    <h1>Password Manager? I barely know her!</h1>
-    <hr>
     <div class="content">
     <form class="user_input" method="post">
         <p>
@@ -123,7 +115,6 @@ input[type="button"]{
         </p>
         <button type="submit">Submit</button>
     </form>
-    <hr>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul class="flashes">

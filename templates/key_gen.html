@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>FlaskApp</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
     <style>
         a:link { 
             text-decoration: none; 
         } 
         body {
-            background-image: url('static/pexels-neosiam-+-580871.jpg');
+            background-image: url('static/pexels-em-hopper-10923765.jpg');
             background-size: cover;
             background-repeat: no-repeat;
 
@@ -24,6 +24,7 @@
             overflow: hidden;
         }
         .header a {
+            font-family: "Kanit", sans-serif;
             padding: 14px 16px;
             display: block;
             float: right;
@@ -46,15 +47,6 @@
   padding:0 18px; 
 
 }
-
-input[type="button"]{ 
-  color:#fff;
-  position:relative;
-  left:9px;
-  top:25px; 
-  width:100px;
-  cursor:pointer;
-}
     </style>
 </head>
 <body>
@@ -65,7 +57,7 @@ input[type="button"]{
         <a href="{{ url_for('about') }}">About</a>
         <a href="{{ url_for('index') }}">Home</a>
       </div>
-    <h1>Key generator? I hardly know her!</h1>
+    <h1>Generate your unique key here! Don't lose it!</h1>
     <hr>
     <div class="content">
         <br>
