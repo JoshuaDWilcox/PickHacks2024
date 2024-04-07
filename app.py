@@ -6,8 +6,12 @@ from cryptography.fernet import Fernet
 app = Flask(__name__)
 app.secret_key = b'SECRETjojn2r982h2j@J$O#@$J@jo@#'
 
-client = MongoClient('localhost', 27017) #, username='jdwilcox32', password='jfolA6tcIb9k9HXy'
-
+client = MongoClient('mongodb+srv://jdwilcox32:jfolA6tcIb9k9HXy@cluster0.f9nwtyt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', server_api=ServerApi('1')) #, username='jdwilcox32', password='jfolA6tcIb9k9HXy'
+try:
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
 db = client.flask_db
 logins = db.logins
 
