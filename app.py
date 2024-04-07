@@ -61,7 +61,21 @@ def decryption(decrypt_id):
     flash("Password: ******")
     return render_template('decryption.html',id=decrypt_id)
 
-
 @app.route('/about',methods=('GET','POST'))
 def about():
     return render_template('about.html')
+
+@app.route('/key_gen',methods=('GET','POST'))
+def key_gen():
+    if request.method=='POST':
+        key=Fernet.generate_key()
+        key=key.decode('utf-8')
+        flash(key) 
+    return render_template('key_gen.html')
+
+# @app.post(('/key_gen'))
+# def generate_key():
+#     key=Fernet.generate_key()
+#     key=key.decode('utf-8')
+#     flash(key)
+#     return redirect(url_for('key_gen'))
