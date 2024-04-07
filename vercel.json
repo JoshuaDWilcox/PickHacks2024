@@ -2,8 +2,7 @@
      "builds": [
         { 
             "src":"app.py", 
-            "use":"@vercel/python" ,
-            "buildCommand": "flask run"
+            "use":"@vercel/python"
         } 
     ], 
     "routes": [ 
