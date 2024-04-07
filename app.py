@@ -45,7 +45,7 @@ def delete(id):
 def decrypt(id):
     return redirect(url_for('decryption',decrypt_id=id))
 
-@app.route('/decryption/<decrypt_id>',methods=('GET','POST'))
+@app.route('/<decrypt_id>',methods=('GET','POST'))
 def decryption(decrypt_id):
     decrypt_login = logins.find_one({"_id": ObjectId(decrypt_id)})
     flash("Website: "+decrypt_login["login_website"])
