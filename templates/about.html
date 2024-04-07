@@ -5,6 +5,15 @@
     <title>FlaskApp</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit|Karla">
     <style>
+        #leftlogo{
+            font-family: "Kanit", sans-serif;
+            padding: 14px 16px;
+            display: block;
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            font-size: 24px;
+        }
         a:link { 
             text-decoration: none; 
         } 
@@ -62,6 +71,7 @@
 <body>
     <div class="header">
         <!--<img src="{{url_for('static', filename='goldfish.jpeg')}}" /> -->
+        <a href="{{ url_for('index') }}" id="leftlogo">Goldfish Guard</a>
         <a class="active" href="#home"><img src="" /></a>
         <a href="{{ url_for('key_gen') }}">Key</a>
         <a href="{{ url_for('about') }}">About</a>
