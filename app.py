@@ -74,7 +74,7 @@ def key_gen():
     return render_template('key_gen.html')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=8000)
 # @app.post(('/key_gen'))
 # def generate_key():
 #     key=Fernet.generate_key()
